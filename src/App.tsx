@@ -5,7 +5,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { Container, Navbar } from 'react-bootstrap';
 
 
-function App() {
+export const App: React.FC = () => {
 
   return (
     <>
@@ -24,5 +24,3 @@ function App() {
     </>
   );
 }
-
-export default App;
