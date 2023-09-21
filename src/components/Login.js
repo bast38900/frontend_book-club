@@ -1,4 +1,6 @@
 import { useRef } from "react"
+import { Form, Button } from 'react-bootstrap';
+
 const Login = ({setCurrUser, setShow}) =>{
   const formRef=useRef()
   const login=async (userInfo, setCurrUser)=>{
@@ -38,14 +40,19 @@ const Login = ({setCurrUser, setShow}) =>{
   return(
     <div>
       <form ref={formRef} onSubmit={handleSubmit}>
-        Email: <input type="email" name='email' placeholder="email" />
+        {/* Email: <input type="email" name='email' placeholder="email" /> */}
+        <Form.Control type="email" name='email' placeholder="Enter email" style={{width: 200}}/>
         <br/>
-        Password: <input type="password" name='password' placeholder="password" />
+        {/* Password: <input type="password" name='password' placeholder="password" /> */}
+        <Form.Control type="password" name='password' placeholder="Password" style={{width: 200}}/>
         <br/>
-        <input type='submit' value="Login" />
+        {/* <input type='submit' value="Login" /> */}
+        <Button variant="primary" type="submit" value="Login">
+        Submit
+      </Button>
       </form>
       <br />
-      <div>Not registered yet, <a href="#signup" onClick={handleClick} >Signup</a> </div>
+      <div>Not registered? <a href="#signup" onClick={handleClick} >Signup</a> </div>
     </div>
   )
 }
