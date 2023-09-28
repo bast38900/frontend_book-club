@@ -1,9 +1,12 @@
-import { useRef } from "react"
+import { useRef, useContext } from "react"
 import { Form, Button } from 'react-bootstrap';
+import { AuthContext } from '../context/AuthContext'
 
 const Login = ({setCurrUser, setShow}) =>{
+  const {authenticated, setAuthenticated} = useContext(AuthContext)
   const formRef=useRef()
   const login=async (userInfo, setCurrUser)=>{
+    
     const url="http://localhost:3001/login"
     try{
         const response=await fetch(url, {
@@ -17,8 +20,8 @@ const Login = ({setCurrUser, setShow}) =>{
         const data=await response.json()
         if(!response.ok) 
           throw data.error
-        localStorage.setItem("token", response.headers.get("Authorization"))
-        setCurrUser(data)        
+          sessionStorage.setItem("token", response.headers.get("Authorization"))
+        setCurrUser(data)     
     }catch(error){
        console.log("error", error)
     }
@@ -31,6 +34,7 @@ const Login = ({setCurrUser, setShow}) =>{
         "user":{ email: data.email, password: data.password }
       }
       login(userInfo, setCurrUser)
+      setAuthenticated(true)   
       e.target.reset()
   }
   const handleClick=e=>{

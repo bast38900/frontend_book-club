@@ -5,12 +5,12 @@ const Logout =({setCurrUser})=>{
               method: "delete",
               headers: {
                   "content-type": "application/json",
-                  "authorization": localStorage.getItem("token")
+                  "authorization": sessionStorage.getItem("token")
               },
           })
           const data=await response.json()
           if(!response.ok) throw data.error
-          localStorage.removeItem("token")
+          sessionStorage.removeItem("token")
           setCurrUser(null)
       } catch (error) {
           console.log("error", error)
