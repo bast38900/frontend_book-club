@@ -1,9 +1,7 @@
 import { useRef, useContext } from "react"
 import { Form, Button } from 'react-bootstrap';
-import { AuthContext } from '../context/AuthContext'
 
 const Login = ({setCurrUser, setShow}) =>{
-  const {authenticated, setAuthenticated} = useContext(AuthContext)
   const formRef=useRef()
   const login=async (userInfo, setCurrUser)=>{
     
@@ -34,7 +32,6 @@ const Login = ({setCurrUser, setShow}) =>{
         "user":{ email: data.email, password: data.password }
       }
       login(userInfo, setCurrUser)
-      setAuthenticated(true)   
       e.target.reset()
   }
   const handleClick=e=>{
